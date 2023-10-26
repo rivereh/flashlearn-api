@@ -1,8 +1,7 @@
 const express = require('express')
 require('dotenv').config()
-const cors = require('cors')
 
-const app = express().use('*', cors())
+const app = express()
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
@@ -11,6 +10,12 @@ const userRoutes = require('./routes/user')
 app.use(express.json())
 app.use((req, res, next) => {
   console.log(req.path, req.method)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'OPTIONS, GET, POST, PUT, PATCH, DELETE'
+  )
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   next()
 })
 
