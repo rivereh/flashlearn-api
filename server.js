@@ -11,8 +11,7 @@ const userRoutes = require('./routes/user')
 // middleware
 app.use(express.json())
 app.use((req, res, next) => {
-  res.header(`Access-Control-Allow-Origin`, `54.214.110.106`)
-  res.header(`Access-Control-Allow-Origin`, `flashlearnapp.xyz`)
+  res.header(`Access-Control-Allow-Origin`, `http://flashlearnapp.xyz`)
   res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`)
   res.header(`Access-Control-Allow-Headers`, `Content-Type`)
 
