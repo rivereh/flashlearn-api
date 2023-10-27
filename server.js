@@ -1,10 +1,8 @@
-const cors = require('cors')
 const express = require('express')
 require('dotenv').config()
+// const cors = require('cors')
 
-const app = express()
-app.use(cors())
-app.options('*', cors())
+// const app = express().use('*', cors())
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
