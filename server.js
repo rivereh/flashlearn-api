@@ -1,8 +1,16 @@
 const express = require('express')
 require('dotenv').config()
-// const cors = require('cors')
+const cors = require('cors')
 
 const app = express()
+
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+  })
+)
+
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
