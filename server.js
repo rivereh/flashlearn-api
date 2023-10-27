@@ -8,12 +8,23 @@ const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
 
+const allowedOrigins = [
+  'http://flashlearn.xyz',
+  'http://flashlearnapp.xyz.s3-website-us-west-2.amazonaws.com',
+]
+
 app.use(
   cors({
-    origin: '*',
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    methods: ['GET', 'PUT', 'POST', 'PATCH'],
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization'],
   })
 )
 
