@@ -2,8 +2,13 @@ const cors = require('cors')
 const express = require('express')
 
 const app = express()
-app.use(cors())
-app.options('*', cors())
+
+app.use(
+  cors({
+    origin: 'http://flashlearnapp.xyz',
+    credentials: true,
+  })
+)
 
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
