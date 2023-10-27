@@ -1,20 +1,13 @@
 const cors = require('cors')
 const express = require('express')
+require('dotenv').config()
 
 const app = express()
-
-app.use(
-  cors({
-    origin: 'http://flashlearnapp.xyz',
-    credentials: true,
-  })
-)
-
+app.use(cors())
+app.options('*', cors())
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
-
-require('dotenv').config()
 
 // middleware
 app.use(express.json())
