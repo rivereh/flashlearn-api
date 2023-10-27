@@ -1,27 +1,15 @@
 const cors = require('cors')
 const express = require('express')
-require('dotenv').config()
 
-const app = express()
 app.use(cors())
 app.options('*', cors())
+
+const app = express()
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
 
-const allowCrossDomain = function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-
-  // intercept OPTIONS method
-  if ('OPTIONS' == req.method) {
-    res.send(200)
-  } else {
-    next()
-  }
-}
-app.use(allowCrossDomain)
+require('dotenv').config()
 
 // middleware
 app.use(express.json())
