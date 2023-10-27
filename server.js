@@ -9,12 +9,20 @@ const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
 
-// middleware
-app.use(express.json())
-app.use((req, res, next) => {
+app.all('*', function (req, res, next) {
   console.log(req.path, req.method)
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+  res.header('Access-Control-Allow-Headers', 'Content-Type')
   next()
 })
+
+// middleware
+app.use(express.json())
+// app.use((req, res, next) => {
+//   console.log(req.path, req.method)
+//   next()
+// })
 
 // routes
 app.use('/api/cards', cardRoutes)
