@@ -3,6 +3,12 @@ const mongoose = require('mongoose')
 
 // get all cards
 const getCards = async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
   const user_id = req.user._id
 
   const cards = await Card.find({ user_id }).sort({ createdAt: -1 })
@@ -11,6 +17,12 @@ const getCards = async (req, res) => {
 
 // get a single workout
 const getCard = async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -28,6 +40,12 @@ const getCard = async (req, res) => {
 
 // create new card
 const createCard = async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
   const { front, back } = req.body
 
   let emptyFields = []
@@ -56,6 +74,12 @@ const createCard = async (req, res) => {
 
 // delete a workout
 const deleteCard = async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -73,6 +97,12 @@ const deleteCard = async (req, res) => {
 
 // update a workout
 const updateCard = async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -82,7 +112,7 @@ const updateCard = async (req, res) => {
   const card = await Card.findOneAndUpdate(
     { _id: id },
     {
-      ...req.body
+      ...req.body,
     }
   )
 
@@ -98,5 +128,5 @@ module.exports = {
   getCard,
   createCard,
   deleteCard,
-  updateCard
+  updateCard,
 }
