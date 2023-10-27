@@ -1,9 +1,10 @@
+const cors = require('cors')
 const express = require('express')
 require('dotenv').config()
-const cors = require('cors')
 
 const app = express()
-// app.use(cors())
+app.use(cors())
+app.options('*', cors())
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
@@ -11,10 +12,6 @@ const userRoutes = require('./routes/user')
 // middleware
 app.use(express.json())
 app.use((req, res, next) => {
-  res.header(`Access-Control-Allow-Origin`, `http://flashlearnapp.xyz`)
-  res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`)
-  res.header(`Access-Control-Allow-Headers`, `Content-Type`)
-
   console.log(req.path, req.method)
   next()
 })
