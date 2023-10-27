@@ -24,7 +24,7 @@ app.use(
       }
     },
     credentials: true,
-    methods: ['GET', 'POST', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE'],
     allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization'],
   })
 )
