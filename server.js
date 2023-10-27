@@ -9,6 +9,7 @@ const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
 
 const allowedOrigins = [
+  'http://localhost:5173',
   'http://flashlearn.xyz',
   'http://flashlearnapp.xyz.s3-website-us-west-2.amazonaws.com',
 ]
