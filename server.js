@@ -13,20 +13,22 @@ const allowedOrigins = [
   'http://flashlearnapp.xyz.s3-website-us-west-2.amazonaws.com',
 ]
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE'],
-    allowedHeaders: '*',
-  })
-)
+app.use(cors())
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true)
+//       } else {
+//         callback(new Error('Not allowed by CORS'))
+//       }
+//     },
+//     credentials: true,
+//     methods: ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE'],
+//     allowedHeaders: '*',
+//   })
+// )
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
