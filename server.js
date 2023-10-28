@@ -2,12 +2,11 @@ const express = require('express')
 require('dotenv').config()
 const cors = require('cors')
 
-const app = express()
-
 const mongoose = require('mongoose')
 const cardRoutes = require('./routes/cards')
 const userRoutes = require('./routes/user')
 
+const app = express()
 const allowedOrigins = [
   'http://localhost:5173',
   'http://flashlearn.xyz',
@@ -25,7 +24,7 @@ app.use(
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE'],
-    allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization'],
+    allowedHeaders: '*',
   })
 )
 
@@ -38,8 +37,8 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 // routes
-app.use('/api/cards', cardRoutes)
-app.use('/api/user', userRoutes)
+app.use('/api/cards/', cardRoutes)
+app.use('/api/user/', userRoutes)
 
 // connect to db
 mongoose
